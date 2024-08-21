@@ -1,10 +1,10 @@
 package slice
 
 import (
-	"errors"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/yt2zf/GoUtils/internal/errs"
 )
 
 func TestDelete(t *testing.T) {
@@ -34,13 +34,13 @@ func TestDelete(t *testing.T) {
 			name:    "index out of range",
 			slice:   []int{123, 100},
 			index:   12,
-			wantErr: errors.New("index out of range"),
+			wantErr: errs.NewErrIndexOutOfRange(2, 12),
 		},
 		{
 			name:    "index less than 0",
 			slice:   []int{123, 100},
 			index:   -1,
-			wantErr: errors.New("index out of range"),
+			wantErr: errs.NewErrIndexOutOfRange(2, -1),
 		},
 		{
 			name:      "index last",

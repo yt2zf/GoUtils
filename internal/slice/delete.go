@@ -1,12 +1,14 @@
 package slice
 
-import "errors"
+import (
+	"github.com/yt2zf/GoUtils/internal/errs"
+)
 
 func Delete[T any](src []T, index int) ([]T, T, error) {
 	length := len(src)
 	if index < 0 || index >= length {
 		var zero T
-		return nil, zero, errors.New("index out of range")
+		return nil, zero, errs.NewErrIndexOutOfRange(length, index)
 	}
 
 	res := src[index]
